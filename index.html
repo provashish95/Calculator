@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body>
+
+<form name="sci-calc">
+    <h5>ROY CALCULATOR</h5>
+    <table cellspacing="0" cellpadding="1">
+        <tr>
+            <td COLSPAN="5" ALIGN="center"><input NAME="display" class="sc" VALUE="0" SIZE="44" MAXLENGTH="25"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value="Clear" ONCLICK="this.form.display.value = 0 "></td>
+            <td align="center" colspan="2"><input type="button" value="        Backspace " ONCLICK="deleteChar(this.form.display)"></td>
+            <td align="center" colspan="2"><input type="button" value="                  Enter " NAME="Enter" ONCLICK="if (checkNum(this.form.display.value)) { compute(this.form) }"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value=" exp " ONCLICK="if (checkNum(this.form.display.value)) { exp(this.form) }"></td>
+            <td align="center"><input type="button" value="  7  " ONCLICK="addChar(this.form.display, '7')"></td>
+            <td align="center"><input type="button" value="  8  " ONCLICK="addChar(this.form.display, '8')"></td>
+            <td align="center"><input type="button" value="  9  " ONCLICK="addChar(this.form.display, '9')"></td>
+            <td align="center"><input type="button" value="   /   " ONCLICK="addChar(this.form.display, '/')"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value="  ln   " ONCLICK="if (checkNum(this.form.display.value)) { ln(this.form) }"></td>
+            <td align="center"><input type="button" value="  4  " ONCLICK="addChar(this.form.display, '4')"></td>
+            <td align="center"><input type="button" value="  5  " ONCLICK="addChar(this.form.display, '5')"></td>
+            <td align="center"><input type="button" value="  6  " ONCLICK="addChar(this.form.display, '6')"></td>
+            <td align="center"><input type="button" value="   *   " ONCLICK="addChar(this.form.display, '*')"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value=" sqrt " ONCLICK="if (checkNum(this.form.display.value)) { sqrt(this.form) }"></td>
+            <td align="center"><input type="button" value="  1  " ONCLICK="addChar(this.form.display, '1')"></td>
+            <td align="center"><input type="button" value="  2  " ONCLICK="addChar(this.form.display, '2')"></td>
+            <td align="center"><input type="button" value="  3  " ONCLICK="addChar(this.form.display, '3')"></td>
+            <td align="center"><input type="button" value="   -   " ONCLICK="addChar(this.form.display, '-')"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value="  sq  " ONCLICK="if (checkNum(this.form.display.value)) { square(this.form) }"></td>
+            <td align="center"><input type="button" value="  0  " ONCLICK="addChar(this.form.display, '0')"></td>
+            <td align="center"><input type="button" value="   .  " ONCLICK="addChar(this.form.display, '.')"></td>
+            <td align="center"><input type="button" value=" +/- " ONCLICK="changeSign(this.form.display)"></td>
+            <td align="center"><input type="button" value="   +  " ONCLICK="addChar(this.form.display, '+')"></td>
+        </tr>
+        <tr>
+            <td align="center"><input type="button" value="   (    " ONCLICK="addChar(this.form.display, '(')"></TD>
+            <td align="center"><input type="button" value="cos" ONCLICK="if (checkNum(this.form.display.value)) { cos(this.form) }"></TD>
+            <td align="center"><input type="button" value=" sin " ONCLICK="if (checkNum(this.form.display.value)) { sin(this.form) }"></TD>
+            <td align="center"><input type="button" value=" tan" ONCLICK="if (checkNum(this.form.display.value)) { tan(this.form) }"></TD>
+            <td align="center"><input type="button" value="   )   " ONCLICK="addChar(this.form.display, ')')"></TD>
+        </tr>
+
+    </table>
+</form>
+
+<script>
+    function addChar(input, character) {
+        if(input.value == null || input.value == "0")
+            input.value = character
+        else
+            input.value += character
+    }
+
+    function cos(form) {
+        form.display.value = Math.cos(form.display.value);
+    }
+
+    function sin(form) {
+        form.display.value = Math.sin(form.display.value);
+    }
+
+    function tan(form) {
+        form.display.value = Math.tan(form.display.value);
+    }
+
+    function sqrt(form) {
+        form.display.value = Math.sqrt(form.display.value);
+    }
+
+    function ln(form) {
+        form.display.value = Math.log(form.display.value);
+    }
+
+    function exp(form) {
+        form.display.value = Math.exp(form.display.value);
+    }
+
+    function deleteChar(input) {
+        input.value = input.value.substring(0, input.value.length - 1)
+    }
+
+    function changeSign(input) {
+        if(input.value.substring(0, 1) == "-")
+            input.value = input.value.substring(1, input.value.length)
+        else
+            input.value = "-" + input.value
+    }
+
+    function compute(form) {
+        form.display.value = eval(form.display.value)
+    }
+
+    function square(form) {
+        form.display.value = eval(form.display.value) * eval(form.display.value)
+    }
+
+    function checkNum(str) {
+        for (var i = 0; i < str.length; i++) {
+            var x = str.substring(i, i+1)
+            if (x < "0" || x > "9") {
+                if (x != "/" && x != "*" && x != "+" && x != "-" && x != "."
+                    && x != "(" && x!= ")") {
+                    alert("invalid entry!")
+                    return false
+                }
+            }
+        }
+        return true
+    }
+</script>
+
+
+
+
+
+
+    <script src="js/jquery-3.4.1%20(1).js"></script>
+    <script src="js/propers.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/my-script.js"></script>
+</body>
+</html>
